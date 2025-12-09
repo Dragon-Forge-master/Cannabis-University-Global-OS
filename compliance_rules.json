@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2025-12-09",
+    "authority": "Cannabis University Global Compliance Desk"
+  },
+  "regions": {
+    "california": { 
+      "max_edible_mg_per_package": 100, 
+      "max_edible_mg_per_serving": 10,
+      "age_limit": 21,
+      "tax_category": "adult_use"
+    },
+    "uk_medical": { 
+      "prescription_required": true, 
+      "forms_allowed": ["oil", "flower", "capsule"], 
+      "forms_banned": ["gummy", "edible_food"],
+      "import_license_required": true
+    },
+    "canada": { 
+      "max_edible_mg_per_package": 10, 
+      "age_limit": 19,
+      "packaging_requirement": "plain_packaging"
+    },
+    "thailand": {
+      "status": "decriminalized",
+      "thc_limit_extracts": 0.2,
+      "notes": "Cannabis flower is legal, extracts over 0.2% THC are narcotic."
+    }
+  },
+  "community_note": "Please submit a Pull Request to add your country's regulations."
+}
