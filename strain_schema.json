@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "The Global Cannabis University Strain Standard",
+  "description": "A standardized data model for recording cannabis chemovars, moving beyond the simple Indica/Sativa classification.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string" },
+    "lineage": {
+      "type": "object",
+      "properties": {
+        "mother": { "type": "string" },
+        "father": { "type": "string" },
+        "breeder": { "type": "string" }
+      }
+    },
+    "classification": {
+      "type": "string",
+      "enum": ["Type I (High THC)", "Type II (Balanced)", "Type III (High CBD)", "Type IV (CBG Dominant)"]
+    },
+    "lab_results": {
+      "type": "object",
+      "description": "Percentage by dry weight",
+      "properties": {
+        "cannabinoids": {
+          "thc_total": { "type": "number" },
+          "cbd_total": { "type": "number" },
+          "cbg_total": { "type": "number" },
+          "thcv": { "type": "number" }
+        },
+        "terpenes": {
+          "primary": { "type": "string" },
+          "profile": {
+            "myrcene": { "type": "number" },
+            "limonene": { "type": "number" },
+            "caryophyllene": { "type": "number" },
+            "linalool": { "type": "number" },
+            "pinene": { "type": "number" }
+          }
+        }
+      }
+    },
+    "medicinal_tags": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["Epilepsy", "Chronic Pain", "Insomnia", "Anxiety", "Nausea"] }
+    }
+  },
+  "required": ["name", "classification", "lab_results"]
+}
