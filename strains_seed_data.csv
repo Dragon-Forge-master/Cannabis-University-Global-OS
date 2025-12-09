@@ -1,0 +1,11 @@
+id,name,type,thc_percent,cbd_percent,primary_terpene,effect_tag
+001,Granddaddy Purple,Indica Dominant,23,0.1,Myrcene,Sleep
+002,Jack Herer,Sativa Dominant,19,0.2,Terpinolene,Creativity
+003,ACDC,High CBD,1,20,Myrcene,Anxiety
+004,Blue Dream,Hybrid,18,0.1,Myrcene,Balance
+005,Sour Diesel,Sativa Dominant,22,0.1,Caryophyllene,Energy
+006,Northern Lights,Indica,16,0,Myrcene,Relaxation
+007,Cannatonic,Type II (Balanced),6,6,Myrcene,Pain
+008,Durban Poison,Sativa,24,0,Terpinolene,Focus
+009,OG Kush,Hybrid,20,0.1,Limonene,Stress
+010,Harlequin,Type II (Balanced),5,8,Myrcene,Clear-Headed
