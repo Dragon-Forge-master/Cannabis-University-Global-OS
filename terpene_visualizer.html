@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CUG Terpene Radar</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; text-align: center; }
+        canvas { background: white; border-radius: 50%; border: 2px solid #333; margin-top: 20px; }
+        .controls { margin: 20px; padding: 20px; background: #fff; display: inline-block; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+    <h2>Cannabis University Global: Terpene Radar</h2>
+    <p>Visualizing the Entourage Effect</p>
+
+    <div class="controls">
+        <label>Myrcene (Sedative): <input type="range" id="myrcene" min="0" max="10" value="8"></label><br>
+        <label>Limonene (Mood): <input type="range" id="limonene" min="0" max="10" value="2"></label><br>
+        <label>Pinene (Focus): <input type="range" id="pinene" min="0" max="10" value="3"></label><br>
+        <label>Caryophyllene (Pain): <input type="range" id="cary" min="0" max="10" value="5"></label><br>
+        <label>Linalool (Calm): <input type="range" id="linalool" min="0" max="10" value="7"></label><br>
+        <br>
+        <button onclick="drawChart()">Update Radar</button>
+    </div>
+
+    <br>
+    <canvas id="radarCanvas" width="400" height="400"></canvas>
+
+    <script>
+        // Copyright Dragon's Forge AI - Open Source License
+        
+        function drawChart() {
+            const canvas = document.getElementById('radarCanvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            const center = w / 2;
+            
+            // Get values
+            const data = [
+                parseInt(document.getElementById('myrcene').value),
+                parseInt(document.getElementById('limonene').value),
+                parseInt(document.getElementById('pinene').value),
+                parseInt(document.getElementById('cary').value),
+                parseInt(document.getElementById('linalool').value)
+            ];
+            
+            const labels = ["Myrcene", "Limonene", "Pinene", "Caryophyllene", "Linalool"];
+            const maxVal = 10;
+            const stepAngle = (Math.PI * 2) / data.length;
+
+            // Clear
+            ctx.clearRect(0, 0, w, h);
+            
+            // Draw Web (Background)
+            ctx.strokeStyle = "#ccc";
+            for (let r = 1; r <= 5; r++) {
+                ctx.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    let radius = (r / 5) * (center - 40);
+                    let x = center + radius * Math.cos(i * stepAngle - Math.PI/2);
+                    let y = center + radius * Math.sin(i * stepAngle - Math.PI/2);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            // Draw Data Shape
+            ctx.fillStyle = "rgba(0, 200, 83, 0.4)"; // Cannabis Green
+            ctx.strokeStyle = "#00695c";
+            ctx.beginPath();
+            
+            for (let i = 0; i < data.length; i++) {
+                let radius = (data[i] / maxVal) * (center - 40);
+                let x = center + radius * Math.cos(i * stepAngle - Math.PI/2);
+                let y = center + radius * Math.sin(i * stepAngle - Math.PI/2);
+                
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+                
+                // Draw Label
+                let labelRadius = center - 20;
+                let lx = center + labelRadius * Math.cos(i * stepAngle - Math.PI/2);
+                let ly = center + labelRadius * Math.sin(i * stepAngle - Math.PI/2);
+                ctx.fillStyle = "#000";
+                ctx.font = "12px Arial";
+                ctx.fillText(labels[i], lx - 20, ly);
+            }
+            
+            ctx.fillStyle = "rgba(0, 200, 83, 0.4)";
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        // Init
+        drawChart();
+    </script>
+</body>
+</html>
